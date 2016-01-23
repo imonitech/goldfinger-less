@@ -1,0 +1,36 @@
+/**
+ * @abstract GOLDFINGER Counter - LESS / CSS Implementation
+ * @author Maurice Opara - maurice@bytekraft.com
+ */
+
+@count: 100;
+
+.goldfinger (@i) when (@i > 0) {
+  div:nth-child(@{i}):after {
+    & when (mod(@i, 15) = 0) {
+      content: "Gold Finger";
+    }
+    
+    & when (mod(@i, 15) > 0) {
+      
+      content: "@{i}";
+      
+      & when (mod(@i, 3) = 0) {
+        content: "Gold";
+      }
+      
+      & when (mod(@i, 5) = 0) {
+        content: "Finger";
+      }
+      
+    }
+  }
+  .goldfinger(@i - 1);
+}
+
+.goldfinger(@count);
+
+div {
+  font-size: 15px;
+  line-height: 30px;
+}
